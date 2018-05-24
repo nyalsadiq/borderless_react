@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Project from './Project.js';
-import ProjectCard from './ProjectCard.js';
 import NewProjectCard from './NewProjectCard.js';
 import AppBar from 'material-ui/AppBar';
-import Button from '@material-ui/core/Button';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Provider } from 'react-redux';
+import LoginContainer from './LoginContainer.js';
 
 function Header(props) {
   return (
@@ -20,38 +18,12 @@ function Header(props) {
   );
 }
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      error : null,
-      isLoaded : false,
-      list_data : [],
-    };
-  }
-
-  componentDidMount() {
-    fetch("http://127.0.0.1:8000/projects/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded : true,
-            list_data : result
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded : true,
-            error
-          });
-        }
-      )
-  }
-
+class Projects extends Component {
   render() {
     const header = <Header/>;
-    const {error, isLoaded, list_data } = this.state;
+    const error = this.props.error; 
+    const isLoaded = this.props.isLoaded;
+    const list_data = this.props.list_data;
     const project_list = [];
    
     if (error) {
@@ -85,4 +57,73 @@ class App extends Component {
   }
 }
 
-export default App;
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      error : null,
+      isLoaded : false,
+      list_data : [],
+    };
+  }
+  
+
+  componentDidMount() {
+    fetch("http://127.0.0.1:8000/projects/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded : true,
+            list_data : result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded : true,
+            error
+          });
+        }
+      )
+  }
+
+  render() {
+    return (
+      <Projects error={this.state.error} isLoaded={this.state.isLoaded} list_data={this.state.list_data}/>
+    );
+  }
+
+ 
+}
+
+const MainRouter = ({ store }) => (
+  <Provider store={store}>
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li> 
+            <Link to="projects">Projects</Link>
+          </li>
+        </ul>
+
+        <hr />
+
+        <Route exact path="/" component={Home} />
+        <Route path="/projects" component={App} />
+      </div>
+    </Router>
+  </Provider>
+);
+
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+    <LoginContainer />
+  </div>
+);
+
+export default MainRouter;
