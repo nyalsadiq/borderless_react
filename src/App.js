@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import NewProjectCard from './NewProjectCard.js';
+import ProjectCard from './ProjectCard.js';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -42,7 +42,7 @@ class Projects extends Component {
       }
       //map projects to project card components
       const project_cards = project_list.map(p =>
-        <NewProjectCard title={p.title} owner={p.owner} location={p.location}/>
+        <ProjectCard title={p.title} owner={p.owner} location={p.location}/>
       );
       return (
         <MuiThemeProvider>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { store } from './index.js';
+
 
 class LoginForm extends Component {
     constructor(props) {
@@ -12,11 +12,6 @@ class LoginForm extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.getStore = this.getStore.bind(this);
-    }
-    getStore(event) {
-        event.preventDefault();
-        alert(store.getState());
     }
     handleInputChange(event) {
         const target = event.target;
@@ -49,7 +44,6 @@ class LoginForm extends Component {
                     <br />
                     <input type="submit" value="Login"/>
                 </form>
-                <button onClick={this.getStore}>Token</button>
             </div>
         );
     }

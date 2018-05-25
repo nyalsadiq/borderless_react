@@ -1,28 +1,68 @@
-import React, { Component } from 'react';
-import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import red from '@material-ui/core/colors/red';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-class ProjectCard extends Component {
+const styles = theme => ({
+    avatar: {
+        backgroundColor: red[500],
+    },
+    actions: {
+        display: 'flex',
+    },
+});
+class ProjectCard extends React.Component {
+    state = { expanded: false };
 
-    render () {
+    handleExpandClick = () => {
+        this.setState({expanded: !this.state.expanded });
+    };
+
+    render() {
+        const { classes } = this.props;
         return (
-            <Card>
-                <CardHeader
-                    title="Generic Profile"
-                    subtitle="Looking for Opportunities"
-                    avatar="jsa-128.jpg"
-                />
-                <CardTitle title={this.props.title} subtitle={this.props.location}/>
-                <CardText>
-                    Looking for a cameraguy!
-                </CardText>
-                <CardActions>
-                    <FlatButton label="More Details"/>
-                    <FlatButton label="Save"/>
-                </CardActions>
-            </Card>
-        );
+            <div>
+                <Card className={classes.card}>
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="Project" className={classes.avatar}>
+                                R
+                            </Avatar>
+                        }
+                        action={
+                            <IconButton>
+                               <MoreVertIcon />
+                            </IconButton>
+                        }
+                        title={this.props.title}
+                        subheader={this.props.location}
+                    />
+                    <CardContent>
+                        <Typography component="p">
+                            Looking for a videographer.
+                        </Typography>
+                    </CardContent>
+                    <CardActions className={classes.actions} disableActionSpacing>
+                        <IconButton aria-label="Save">
+                            <FavoriteIcon />
+                        </IconButton>
+                        <IconButton aria-label="Share">
+                            <ShareIcon />
+                        </IconButton>
+                    </CardActions>
+                </Card>
+            </div>
+        )
     }
 }
 
-export default ProjectCard;
+export default withStyles(styles)(ProjectCard);

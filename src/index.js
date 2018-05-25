@@ -4,9 +4,9 @@ import './index.css';
 import MainRouter from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
-import jwt_token from './redux/reducers/reducers.js';
+import borderless_reducers from './redux/reducers/reducers.js';
 
-export const store = createStore(jwt_token);
+export const store = createStore(borderless_reducers);
 
 
 ReactDOM.render(

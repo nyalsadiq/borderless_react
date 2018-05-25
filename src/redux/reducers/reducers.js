@@ -1,9 +1,9 @@
 // eslint-disable-next-line
 import { combineReducers } from 'redux';
-import { SET_TOKEN } from '../actions/actions';
+import { SET_TOKEN, SET_PROFILE } from '../actions/actions';
 
 
-function jtw_token(state = '', action) {
+function jwt_token(state = '', action) {
     switch(action.type) {
         case SET_TOKEN:
             return action.token;
@@ -12,4 +12,18 @@ function jtw_token(state = '', action) {
     }
 }
 
-export default jtw_token;
+function profile(state = [], action) {
+    switch(action.type) {
+        case SET_PROFILE:
+            return action.profile;
+        
+        default:
+            return state;
+    }
+}
+
+const borderless_reducers = combineReducers({
+    jwt_token,
+    profile
+})
+export default borderless_reducers;
