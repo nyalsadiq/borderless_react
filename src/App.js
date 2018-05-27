@@ -92,8 +92,6 @@ class App extends Component {
       <Projects error={this.state.error} isLoaded={this.state.isLoaded} list_data={this.state.list_data}/>
     );
   }
-
- 
 }
 
 const MainRouter = ({ store }) => (
