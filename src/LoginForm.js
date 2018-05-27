@@ -28,12 +28,13 @@ class LoginForm extends Component {
 
     handleSubmit(event) {
         this.props.onSubmit(this.state.username, this.state.password);
+        
         event.preventDefault();
     }
 
     render() {
         if (this.props.token != "") {
-            return <Redirect to="projects"/>;
+            return <Redirect to="me"/>;
         }
         return (
             <div>
@@ -45,7 +46,7 @@ class LoginForm extends Component {
                     <br />
                     <label>
                         Password:
-                        <input name="password" type="text" value={this.state.password} onChange={this.handleInputChange}/>
+                        <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}/>
                     </label>
                     <br />
                     <input type="submit" value="Log In"/>

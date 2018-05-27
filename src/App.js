@@ -6,6 +6,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
 import LoginContainer from './LoginContainer.js';
+import ProfileContainer from './ProfileContainer.js';
+
 
 function Header(props) {
   return (
@@ -42,7 +44,7 @@ class Projects extends Component {
       }
       //map projects to project card components
       const project_cards = project_list.map(p =>
-        <ProjectCard title={p.title} owner={p.owner} location={p.location}/>
+        <ProjectCard key={p.key} title={p.title} owner={p.owner} location={p.location}/>
       );
       return (
         <MuiThemeProvider>
@@ -111,6 +113,7 @@ const MainRouter = ({ store }) => (
 
         <Route exact path="/" component={Home} />
         <Route path="/projects" component={App} />
+        <Route path="/me" component={Profile} />
       </div>
     </Router>
   </Provider>
@@ -119,9 +122,16 @@ const MainRouter = ({ store }) => (
 
 const Home = () => (
   <div>
-    <h2>Home</h2>
+    <Header />
     <LoginContainer />
   </div>
 );
+
+const Profile = () => (
+  <div>
+    <Header />
+    <ProfileContainer />
+  </div>
+)
 
 export default MainRouter;
