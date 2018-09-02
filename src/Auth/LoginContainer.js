@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { set_token, set_profile } from './redux/actions/actions.js';
+import { set_token, set_profile } from '../Redux/actions/actions.js';
 import LoginForm from './LoginForm.js';
 import axios from 'axios';
 

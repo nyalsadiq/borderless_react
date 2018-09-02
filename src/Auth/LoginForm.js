@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-import { store } from './index.js';
-import { BrowserRouter as Router, Route, Lin, Redirect } from "react-router-dom";
+import { BrowserRouter as Redirect } from "react-router-dom";
 
 
 class LoginForm extends Component {
@@ -33,7 +31,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        if (this.props.token != "") {
+        if (this.props.token !== "") {
             return <Redirect to="me"/>;
         }
         return (

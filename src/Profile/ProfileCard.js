@@ -11,7 +11,7 @@ import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
 const styles = theme => ({
     avatar: {
@@ -28,8 +28,8 @@ class ProfileCard extends React.Component {
     };
     
     componentDidMount() {
-        if (this.props.token != ""){
-            this.state.loggedIn = true;
+        if (this.props.token !== ""){
+            this.setState({loggedIn: true});
         }
     }
 
