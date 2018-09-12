@@ -13,7 +13,6 @@ export class Projects extends Component {
     };
   }
   
-
   componentDidMount() {
     fetch("https://borderless.herokuapp.com/projects/")
       .then(res => res.json())
@@ -69,9 +68,11 @@ export class Projects extends Component {
       );
 
       return (
-          <div>
-            {project_cards}
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <div style={{display: 'grid', gridAutoFlow: 'column', gridAutoColumns: '320px', gridTemplateRows: '272px', gridColumnGap: '4px', gridRowGap: '4px'}}>
+              {project_cards}
           </div>
+        </div>
       );
     }
   }

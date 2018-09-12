@@ -1,20 +1,24 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
+import GenericCard from '../Components/GenericCard';
 
-const card = {
-    root: {
-        margin: '40px',
-        width: '30%'
-    }
-}
 
 class ProjectCard extends React.Component {
     render() {
+        const content = (
+            <div>
+                <h3>{this.props.title}</h3>
+                <h4>{this.props.location}</h4>
+                <h4>{this.props.description}</h4>
+            </div>
+        )
         return (
-            <Paper style={card.root} elevation={2}>
-                <h2>{this.props.title}</h2>
-                <p>{this.props.description}</p>
-            </Paper>
+            <GenericCard 
+            color="white"
+            width="318px"
+            height="270px"
+            borderRadius="4px"
+            content={content}
+          />
         )
     }
 }
