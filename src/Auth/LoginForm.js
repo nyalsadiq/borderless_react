@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 class LoginForm extends Component {
@@ -26,31 +26,45 @@ class LoginForm extends Component {
 
     handleSubmit(event) {
         this.props.onSubmit(this.state.username, this.state.password);
-        
         event.preventDefault();
     }
 
     render() {
         if (this.props.token !== "") {
-            return <Redirect to="me"/>;
+            return (<Redirect push to="/me"/>);
         }
+
         return (
-            <div>
+            <div style={{margin: 'auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                <div style={styles.card}>
                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username:
-                        <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange}/>
-                    </label>
+                    <h3>Username</h3>
+                    <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange}/>
                     <br />
-                    <label>
-                        Password:
-                        <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}/>
-                    </label>
+                    <h3>Password:</h3>
+                    <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}/>
                     <br />
                     <input type="submit" value="Log In"/>
                 </form>
+                </div>
             </div>
         );
+    }
+}
+
+const styles = {
+    card: {
+        backgroundPosition: 'center', 
+        backgroundSize: 'cover', 
+        height: "270px", 
+        width: "318px", 
+        backgroundColor: "white", 
+        borderRadius: "4px",
+        margin: '2px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }
 

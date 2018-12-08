@@ -2,21 +2,28 @@ import { connect } from 'react-redux';
 import { set_token, set_profile } from '../Redux/actions/actions.js';
 import LoginForm from './LoginForm.js';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 function get_token(username, password, dispatch) {
-    axios.post('http://127.0.0.1:8000/api-token-auth/',{
+    axios.post('https://borderless.herokuapp.com/api-token-auth/',{
         username: username,
         password: password
     }).then((response) => {
         dispatch(set_token(response.data.token));
         getProfileDetails(response.data.token,dispatch);
+        setToken(response.data.token);
     }).catch((error) => {
         console.log(error);
     });
 }
 
+function setToken(token){
+    localStorage.setItem('token', token);
+    localStorage.setItem('issued',String(Date.now()));
+}
+
 function getProfileDetails(token, dispatch) {
-    axios.get('http://127.0.0.1:8000/profiles/me/',
+    axios.get('https://borderless.herokuapp.com/profiles/me/',
     {headers: {
             'Authorization': 'jwt ' + token,
             }
@@ -43,4 +50,4 @@ const LoginContainer = connect(
     mapDispatchToProps
 )(LoginForm)
 
-export default LoginContainer;
+export default withRouter(LoginContainer);

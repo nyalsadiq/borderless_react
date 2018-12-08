@@ -53,6 +53,9 @@ export class Projects extends Component {
           location: data.location,
           owner: data.owner,
           description: data.description,
+          comments: data.comments,
+          likes: data.likes,
+          comment_count: data.comment_count,
         };
         project_list.push(obj);
       }
@@ -63,13 +66,16 @@ export class Projects extends Component {
                 title={p.title} 
                 owner={p.owner} 
                 location={p.location} 
-                description={p.description} 
+                description={p.description}
+                comments={p.comments}
+                likes={p.likes}
+                comment_count={p.comment_count}
               />
       );
 
       return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <div style={{display: 'grid', gridAutoFlow: 'column', gridAutoColumns: '320px', gridTemplateRows: '272px', gridColumnGap: '4px', gridRowGap: '4px'}}>
+          <div style={{display: 'grid', gridAutoFlow: 'column', gridAutoColumns: '320px', gridTemplateRows: 'repeat(4, 272px)', gridGap: '4px'}}>
               {project_cards}
           </div>
         </div>
