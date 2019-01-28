@@ -4,7 +4,7 @@
 ### The easy way to find collaborators for your creative projects.
 
 ## To Clone
-* Run `git clone https://github.com/nyalsadiq/Feed.git`
+* Run `git clone https://github.com/nyalsadiq/borderless_react.git`
 
 ## To Build and Run
 * Install Docker and Docker Compose.
