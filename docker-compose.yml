@@ -1,0 +1,11 @@
+version: "3.2"
+
+services:
+    frontend:
+        container_name: borderless-frontend
+        build: .
+        volumes:
+            - '.:/frontend'
+            - './node_modules:/node_modules'
+        ports:
+            - "3000:3000"
