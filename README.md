@@ -1,4 +1,5 @@
 # Borderless
+<img src="https://github.com/nyalsadiq/borderless_react/blob/master/logo.png" alt="logo" width="100"/>
 
 ### The easy way to find collaborators for your creative projects.
 
